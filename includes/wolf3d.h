@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 15:30:30 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/10 15:46:47 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include "libft.h"
 # include <stdbool.h>
+# include "mlx.h"
 
 typedef struct		s_rgba
 {
@@ -70,5 +71,7 @@ typedef struct		s_mlx
 	t_camera		camera;
 	t_map			*map;
 }					t_mlx;
+
+
 
 #endif
