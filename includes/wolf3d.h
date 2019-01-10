@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 13:47:30 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/10 15:30:30 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define HEIGHT 1080
 
 # include "libft.h"
+# include <stdbool.h>
 
 typedef struct		s_rgba
 {
@@ -41,19 +42,33 @@ typedef struct		s_mouse
 	int				y_last;
 }					t_mouse;
 
-typedef struct		s_player
+typedef struct		s_vector
 {
-	double			x;
-	double			y;
-	float			rayX;
-	float			rayY;
-}					t_player;
+	double			s;
+	double			e;
+}					t_vector;
+
+typedef struct		s_camera
+{
+	t_vector		pos;
+	t_vector		plane;
+	t_vector		dir;
+}					t_camera;
+
+typedef struct		s_map
+{
+	int				x;
+	int				y;
+	bool			is_a_wall;
+}					t_map;
 
 typedef struct		s_mlx
 {
 	void			*mlx;
 	void			*win;
 	t_mouse			mouse;
+	t_camera		camera;
+	t_map			*map;
 }					t_mlx;
 
 #endif
