@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 15:46:47 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:44:35 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,31 @@ typedef struct		s_camera
 	t_vector		dir;
 }					t_camera;
 
+typedef struct		s_block
+{
+	t_color			color;
+	bool			is_wall;
+	int				value;
+}					t_block;
+
 typedef struct		s_map
 {
-	int				x;
-	int				y;
-	bool			is_a_wall;
+	int				lines;
+	int				maxrow;
+	t_block			**blocks;
 }					t_map;
 
 typedef struct		s_mlx
 {
 	void			*mlx;
 	void			*win;
+	char			*name;
+	int				fd;
 	t_mouse			mouse;
 	t_camera		camera;
-	t_map			*map;
+	t_map			map;
 }					t_mlx;
 
-
+t_map				read_map(t_mlx *mlx);
 
 #endif
