@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:20:52 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 16:47:24 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:48:48 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		init_map(t_map *map, t_mlx *mlx)
 	mlx->fd = open(mlx->name, O_RDONLY);
 }
 
-t_map		read_map(t_mlx *mlx)
+void		read_map(t_mlx *mlx)
 {
 	char	*line;
 	char	**tab;

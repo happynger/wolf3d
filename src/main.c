@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 16:17:45 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:49:49 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ static t_mlx	*init(char *name)
 	CHECK_NULL(mlx = (t_mlx *)ft_memalloc(sizeof(t_mlx)));
 	mlx->name = name;
 	mlx->fd = open(name, O_RDONLY);
+	mlx->map.blocks = NULL;
 	if (mlx->fd <= 2)
 		die(mlx, __LINE__);
-	if ((mlx->map = read_map(mlx)) == NULL ||
+	read_map(mlx);
+	if (mlx->map.blocks == NULL ||
 		(mlx->mlx = mlx_init()) == NULL ||
 		(mlx->win = mlx_new_window(mlx->mlx, WIDTH,
 			HEIGHT, NAME(name))) == NULL)
