@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 16:49:49 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/14 13:56:15 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ static t_mlx	*init(char *name)
 		(mlx->win = mlx_new_window(mlx->mlx, WIDTH,
 			HEIGHT, NAME(name))) == NULL)
 		die(mlx, __LINE__);
+	mlx->camera.plane.s = 0;
+	mlx->camera.plane.e = 0.66;
+	mlx->camera.dir.s = -1;
+	mlx->camera.dir.e = 0;
 	return (mlx);
 }
 
@@ -54,10 +58,13 @@ int		main(int ac, char **av)
 	char	*name;
 
 	if (ac > 3)
+	{
 		ft_error("Usage -> ./wolf3d | -> ./wolf3d [Path to the map file]");
+		return (1);
+	}
 	else if (ac == 2)
 		name = av[1];
-	else if (ac < 2)
+	else
 		name = ft_strdup("map.wolf");
-	
+	mlx = init(name);
 }
