@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:10:44 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:30:56 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct		s_map
 }					t_map;
 
 /*
-**	
+**	@cx -> x in respect to camera
 **	@side_hit => 1 -> NS : => 0 -> EW
 **
 */

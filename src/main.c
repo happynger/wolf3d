@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:11:08 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:33:36 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static t_mlx	*init(char *name)
 	mlx->camera.plane.y = 0.66;
 	mlx->camera.dir.x = -1;
 	mlx->camera.dir.y = 0;
-	mlx->camera.x = 0;
-	mlx->camera.y = 0;
+	mlx->camera.x = mlx->map.playerX;
+	mlx->camera.y = mlx->map.playerY;
 	mlx->camera.range = 100;
 	return (mlx);
 }

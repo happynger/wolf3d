@@ -6,11 +6,12 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:04:54 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:22:06 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:56:28 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <math.h>
 
 void	dda(t_mlx *mlx, t_ray *ray)
 {
@@ -37,11 +38,11 @@ void	dda(t_mlx *mlx, t_ray *ray)
 	}
 }
 
-t_coor	init_ray(t_ray *ray, t_mlx *mlx)
+void	init_ray(t_ray *ray, t_mlx *mlx)
 {
 	ray->hit = false;
-	ray->delta.x = abs(1 / ray->raydir.x);
-	ray->delta.y = abs(1 / ray->raydir.y);
+	ray->delta.x = fabs(1 / ray->raydir.x);
+	ray->delta.y = fabs(1 / ray->raydir.y);
 	if (ray->raydir.x < 0)
 	{
 		ray->step.x = -1;
@@ -70,7 +71,7 @@ void	draw(t_mlx *mlx, int x)
 	int			blank;
 
 	y = 0;
-	blank = HEIGHT - mlx->linelength / 2;
+	blank = (HEIGHT - mlx->linelength) / 2;
 	while (y < HEIGHT)
 	{
 		if (y < blank || y > blank + mlx->linelength)
@@ -90,7 +91,9 @@ void	render(t_mlx *mlx)
 	x = 0;
 	while (x < WIDTH)
 	{
-		ray.cx = 2.0 * x / WIDTH - 1.0;
+		mlx->map.playerX = mlx->camera.x;
+		mlx->map.playerY = mlx->camera.y;
+		ray.cx = 2.0 * x / (double)WIDTH - 1.0;
 		ray.raydir.x = mlx->camera.dir.x + mlx->camera.plane.x * ray.cx;
 		ray.raydir.y = mlx->camera.dir.y + mlx->camera.plane.y * ray.cx;
 		init_ray(&ray, mlx);

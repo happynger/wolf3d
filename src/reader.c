@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:20:52 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 14:26:52 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:44:38 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			get_instr(t_map *map, char *line)
 	map->playerX = ft_atoi(tmp);
 	while (*tmp != ',')
 		tmp++;
+	tmp++;
 	map->playerY = ft_atoi(tmp);
 	ft_strdel(&line);
 	return (1);
