@@ -6,18 +6,41 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:20:52 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/14 13:48:36 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:23:59 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include "get_next_line.h"
 
+int			get_instr(t_map *map, char *line)
+{
+	char	*tmp;
+
+	tmp = line;
+	if (*tmp != '(')
+		return (1);
+	while (!ft_isdigit(*tmp))
+		tmp++;
+	map->playerX = ft_atoi(tmp);
+	while (*tmp != ',')
+		tmp++;
+	map->playerY = ft_atoi(tmp);
+	ft_strdel(&line);
+	return (1);
+}
+
 void		get_size(t_map *map, char *line)
 {
-	int		ln;
-	char	**tab;
+	int			ln;
+	char		**tab;
+	static int	instr;
 
+	if (instr == 0)
+	{
+		instr = get_instr(map, line);
+		return ;
+	}
 	ln = 0;
 	tab = ft_strsplit(line, ' ');
 	while (tab[ln])

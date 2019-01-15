@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/14 13:56:15 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:05:58 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,15 @@ static t_mlx	*init(char *name)
 	mlx->camera.plane.e = 0.66;
 	mlx->camera.dir.s = -1;
 	mlx->camera.dir.e = 0;
+	mlx->camera.x = 0;
+	mlx->camera.y = 0;
 	return (mlx);
+}
+
+int		hook_expose(t_mlx *mlx)
+{
+	render(mlx);
+	return (0);
 }
 
 int		main(int ac, char **av)
@@ -67,4 +75,6 @@ int		main(int ac, char **av)
 	else
 		name = ft_strdup("map.wolf");
 	mlx = init(name);
+	mlx_expose_hook(mlx->win, hook_expose, mlx);
+	mlx_loop(mlx->mlx);
 }
