@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/14 18:22:45 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:10:44 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,6 @@ typedef struct		s_mouse
 	int				y_last;
 }					t_mouse;
 
-typedef struct		s_vector
-{
-	double			s;
-	double			e;
-}					t_vector;
-
 typedef struct		s_dcoor
 {
 	double			x;
@@ -65,8 +59,9 @@ typedef struct		s_camera
 {
 	double			x;
 	double			y;
-	t_vector		plane;
-	t_vector		dir;
+	t_dcoor			plane;
+	t_dcoor			dir;
+	int				range;
 }					t_camera;
 
 typedef struct		s_block
@@ -85,6 +80,23 @@ typedef struct		s_map
 	int				playerY;
 }					t_map;
 
+/*
+**	
+**	@side_hit => 1 -> NS : => 0 -> EW
+**
+*/
+
+typedef struct		s_ray
+{
+	double			cx;
+	t_dcoor			raydir;
+	t_dcoor			side;
+	t_dcoor			delta;
+	t_coor			step;
+	bool			hit;
+	bool			side_hit;
+}					t_ray;
+
 typedef struct		s_mlx
 {
 	void			*mlx;
@@ -93,6 +105,7 @@ typedef struct		s_mlx
 	int				fd;
 	double			curframe;
 	double			prevframe;
+	int				linelength;
 	t_mouse			mouse;
 	t_camera		camera;
 	t_map			map;

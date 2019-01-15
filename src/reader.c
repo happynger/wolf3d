@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:20:52 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/14 14:23:59 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 14:26:52 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		init_map(t_map *map, t_mlx *mlx)
 	line = NULL;
 	map->lines = 0;
 	map->maxrow = 0;
+	map->playerX = -1;
+	map->playerY = -1;
 	while (get_next_line(mlx->fd, &line) > 0)
 		get_size(map, line);
 	map->blocks = ft_memalloc(map->lines * sizeof(t_block));

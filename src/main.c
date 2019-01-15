@@ -6,16 +6,16 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/14 14:05:58 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:11:08 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-#define MSG "\033[1;31mDIE\033[0m executed from ->> "
+#define MSG "\033[1;31mDESTROY\033[0m executed from ->> "
 #define NAME(n) ft_strjoin("WOLF3D ->> ", n)
 
-void			die(t_mlx *mlx, int line)
+void			destroy(t_mlx *mlx, int line)
 {
 	char	*tmp;
 
@@ -38,19 +38,20 @@ static t_mlx	*init(char *name)
 	mlx->fd = open(name, O_RDONLY);
 	mlx->map.blocks = NULL;
 	if (mlx->fd <= 2)
-		die(mlx, __LINE__);
+		destroy(mlx, __LINE__);
 	read_map(mlx);
 	if (mlx->map.blocks == NULL ||
 		(mlx->mlx = mlx_init()) == NULL ||
 		(mlx->win = mlx_new_window(mlx->mlx, WIDTH,
 			HEIGHT, NAME(name))) == NULL)
-		die(mlx, __LINE__);
-	mlx->camera.plane.s = 0;
-	mlx->camera.plane.e = 0.66;
-	mlx->camera.dir.s = -1;
-	mlx->camera.dir.e = 0;
+		destroy(mlx, __LINE__);
+	mlx->camera.plane.x = 0;
+	mlx->camera.plane.y = 0.66;
+	mlx->camera.dir.x = -1;
+	mlx->camera.dir.y = 0;
 	mlx->camera.x = 0;
 	mlx->camera.y = 0;
+	mlx->camera.range = 100;
 	return (mlx);
 }
 
