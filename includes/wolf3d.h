@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:30:56 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:47:44 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIDTH 1280
 # define HEIGHT 1080
 
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # include <stdbool.h>
 # include "mlx.h"
 
@@ -113,5 +113,6 @@ typedef struct		s_mlx
 
 void				read_map(t_mlx *mlx);
 void				render(t_mlx *mlx);
+int					keypress_hook(int key, t_mlx *mlx);
 
 #endif

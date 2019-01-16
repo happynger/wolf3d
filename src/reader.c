@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:20:52 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:44:38 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:59:10 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int			get_instr(t_map *map, char *line)
 		return (1);
 	while (!ft_isdigit(*tmp))
 		tmp++;
-	map->playerX = ft_atoi(tmp);
+	map->playerX = ft_atoi(tmp) - 1;
 	while (*tmp != ',')
 		tmp++;
 	tmp++;
-	map->playerY = ft_atoi(tmp);
+	map->playerY = ft_atoi(tmp) - 1;
 	ft_strdel(&line);
 	return (1);
 }

@@ -6,14 +6,15 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:04:54 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:56:28 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:18:27 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <math.h>
+#include <time.h>
 
-void	dda(t_mlx *mlx, t_ray *ray)
+static void	dda(t_mlx *mlx, t_ray *ray)
 {
 	int		i;
 
@@ -38,7 +39,7 @@ void	dda(t_mlx *mlx, t_ray *ray)
 	}
 }
 
-void	init_ray(t_ray *ray, t_mlx *mlx)
+static void	init_ray(t_ray *ray, t_mlx *mlx)
 {
 	ray->hit = false;
 	ray->delta.x = fabs(1 / ray->raydir.x);
@@ -65,7 +66,7 @@ void	init_ray(t_ray *ray, t_mlx *mlx)
 	}
 }
 
-void	draw(t_mlx *mlx, int x)
+static void	draw(t_mlx *mlx, int x)
 {
 	int			y;
 	int			blank;
@@ -82,20 +83,27 @@ void	draw(t_mlx *mlx, int x)
 	}
 }
 
-void	render(t_mlx *mlx)
+static void	init(t_mlx *mlx, t_ray *ray, int x)
+{
+	mlx->map.playerX = mlx->camera.x;
+	mlx->map.playerY = mlx->camera.y;
+	ray->cx = 2.0 * x / (double)WIDTH - 1.0;
+	ray->raydir.x = mlx->camera.dir.x + mlx->camera.plane.x * ray->cx;
+	ray->raydir.y = mlx->camera.dir.y + mlx->camera.plane.y * ray->cx;
+}
+
+void		render(t_mlx *mlx)
 {
 	int			x;
 	t_ray		ray;
 	double		wall_dist;
+	clock_t		timer;
 
-	x = 0;
-	while (x < WIDTH)
+	x = -1;
+	timer = clock();
+	while (++x < WIDTH)
 	{
-		mlx->map.playerX = mlx->camera.x;
-		mlx->map.playerY = mlx->camera.y;
-		ray.cx = 2.0 * x / (double)WIDTH - 1.0;
-		ray.raydir.x = mlx->camera.dir.x + mlx->camera.plane.x * ray.cx;
-		ray.raydir.y = mlx->camera.dir.y + mlx->camera.plane.y * ray.cx;
+		init(mlx, &ray, x);
 		init_ray(&ray, mlx);
 		dda(mlx, &ray);
 		if (!ray.side_hit)
@@ -106,6 +114,8 @@ void	render(t_mlx *mlx)
 				(1 - ray.step.y) / 2) / ray.raydir.y;
 		mlx->linelength = (ray.hit) ? HEIGHT / wall_dist : HEIGHT;
 		draw(mlx, x);
-		x++;
 	}
+	timer = clock() - timer;
+	mlx->prevframe = mlx->curframe;
+	mlx->curframe = timer / CLOCKS_PER_SEC;
 }

@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:33:36 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:48:25 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static t_mlx	*init(char *name)
 	mlx->camera.x = mlx->map.playerX;
 	mlx->camera.y = mlx->map.playerY;
 	mlx->camera.range = 100;
+	mlx->curframe = 0;
 	return (mlx);
 }
 
@@ -77,5 +78,6 @@ int		main(int ac, char **av)
 		name = ft_strdup("map.wolf");
 	mlx = init(name);
 	mlx_expose_hook(mlx->win, hook_expose, mlx);
+	mlx_key_hook(mlx->win, keypress_hook, mlx);
 	mlx_loop(mlx->mlx);
 }

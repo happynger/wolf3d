@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 13:06:06 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 11:45:20 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:49:54 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@
 # define DIGIT_1	18
 # define L			37
 # define RESET		15
+# define W			13
+# define A			0
+# define S			1
+# define D			2
 
 #endif
