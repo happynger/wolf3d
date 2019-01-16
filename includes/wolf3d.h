@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 16:47:44 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:41:47 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ typedef struct		s_mlx
 	void			*win;
 	char			*name;
 	int				fd;
-	double			curframe;
-	double			prevframe;
+	clock_t			deltaframe;
+	unsigned int	frames;
 	int				linelength;
 	t_mouse			mouse;
 	t_camera		camera;

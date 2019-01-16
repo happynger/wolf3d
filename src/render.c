@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:04:54 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 16:18:27 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:07:57 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static void	init(t_mlx *mlx, t_ray *ray, int x)
 	ray->cx = 2.0 * x / (double)WIDTH - 1.0;
 	ray->raydir.x = mlx->camera.dir.x + mlx->camera.plane.x * ray->cx;
 	ray->raydir.y = mlx->camera.dir.y + mlx->camera.plane.y * ray->cx;
+	init_ray(ray, mlx);
+	dda(mlx, ray);
 }
 
 void		render(t_mlx *mlx)
@@ -104,8 +106,6 @@ void		render(t_mlx *mlx)
 	while (++x < WIDTH)
 	{
 		init(mlx, &ray, x);
-		init_ray(&ray, mlx);
-		dda(mlx, &ray);
 		if (!ray.side_hit)
 			wall_dist = (mlx->map.playerX - mlx->camera.x +
 				(1 - ray.step.x) / 2) / ray.raydir.x;
@@ -115,7 +115,6 @@ void		render(t_mlx *mlx)
 		mlx->linelength = (ray.hit) ? HEIGHT / wall_dist : HEIGHT;
 		draw(mlx, x);
 	}
-	timer = clock() - timer;
-	mlx->prevframe = mlx->curframe;
-	mlx->curframe = timer / CLOCKS_PER_SEC;
+	mlx->deltaframe = clock() - timer;
+	mlx->frames++;
 }

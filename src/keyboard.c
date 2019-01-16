@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otahirov <otahirov@student.4ms.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 16:00:40 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 17:10:32 by otahirov         ###   ########.fr       */
+/*   Created: ms019/01/15 16:00:40 by otahirov          #+#    #+#             */
+/*   Updated: ms019/01/16 14:06:1ms by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include "keyvalues.h"
 #include <math.h>
+#define CLOCK_TO_SEC(time) (time / (double)CLOCKS_PER_SEC)
 
-void	rotate(int key, t_mlx *mlx, double rot_speed)
+void	rotate(int key, t_mlx *mlx, double rs)
 {
 	t_dcoor	dir;
 	t_dcoor	plane;
@@ -22,66 +23,66 @@ void	rotate(int key, t_mlx *mlx, double rot_speed)
 	if (key == D)
 	{
 		dir.x = mlx->camera.dir.x;
-		mlx->camera.dir.x = mlx->camera.dir.x * cos(-rot_speed) -
-			mlx->camera.dir.y * sin(-rot_speed);
-		mlx->camera.dir.y = dir.x * cos(-rot_speed) +
-			mlx->camera.dir.y * sin(-rot_speed);
+		mlx->camera.dir.x = mlx->camera.dir.x * cos(-rs) -
+			mlx->camera.dir.y * sin(-rs);
+		mlx->camera.dir.y = dir.x * cos(-rs) +
+			mlx->camera.dir.y * sin(-rs);
 		plane.x = mlx->camera.plane.x;
-		mlx->camera.plane.x = mlx->camera.plane.x * cos(-rot_speed) -
-			mlx->camera.plane.y * sin(-rot_speed);
-		mlx->camera.plane.y = plane.x * cos(-rot_speed) +
-			mlx->camera.plane.y * sin(-rot_speed);
+		mlx->camera.plane.x = mlx->camera.plane.x * cos(-rs) -
+			mlx->camera.plane.y * sin(-rs);
+		mlx->camera.plane.y = plane.x * cos(-rs) +
+			mlx->camera.plane.y * sin(-rs);
 	}
 	if (key == A)
 	{
 		dir.x = mlx->camera.dir.x;
-		mlx->camera.dir.x = mlx->camera.dir.x * cos(rot_speed) -
-			mlx->camera.dir.y * sin(rot_speed);
-		mlx->camera.dir.y = dir.x * cos(rot_speed) +
-			mlx->camera.dir.y * sin(rot_speed);
+		mlx->camera.dir.x = mlx->camera.dir.x * cos(rs) -
+			mlx->camera.dir.y * sin(rs);
+		mlx->camera.dir.y = dir.x * cos(rs) +
+			mlx->camera.dir.y * sin(rs);
 		plane.x = mlx->camera.plane.x;
-		mlx->camera.plane.x = mlx->camera.plane.x * cos(rot_speed) -
-			mlx->camera.plane.y * sin(rot_speed);
-		mlx->camera.plane.y = plane.x * cos(rot_speed) +
-			mlx->camera.plane.y * sin(rot_speed);
+		mlx->camera.plane.x = mlx->camera.plane.x * cos(rs) -
+			mlx->camera.plane.y * sin(rs);
+		mlx->camera.plane.y = plane.x * cos(rs) +
+			mlx->camera.plane.y * sin(rs);
 	}
 }
 
-void	move(int key, t_mlx *mlx, double move_speed, double rot_speed)
+void	move(int key, t_mlx *mlx, double ms, double rs)
 {
 	if (key == W)
 	{
 		if (mlx->map.blocks[(int)(mlx->camera.x + mlx->camera.dir.x *
-				move_speed)][(int)mlx->camera.y].is_wall == false)
-			mlx->camera.x += mlx->camera.dir.x * move_speed;
+				ms)][(int)mlx->camera.y].is_wall == false)
+			mlx->camera.x += mlx->camera.dir.x * ms;
 		if (mlx->map.blocks[(int)mlx->camera.x][(int)(mlx->camera.y +
-				mlx->camera.dir.y * move_speed)].is_wall == false)
-			mlx->camera.y += mlx->camera.dir.y * move_speed;
+				mlx->camera.dir.y * ms)].is_wall == false)
+			mlx->camera.y += mlx->camera.dir.y * ms;
 	}
 	if (key == S)
 	{
 		if (mlx->map.blocks[(int)(mlx->camera.x - mlx->camera.dir.x *
-				move_speed)][(int)mlx->camera.y].is_wall == false)
-			mlx->camera.x -= mlx->camera.dir.x * move_speed;
+				ms)][(int)mlx->camera.y].is_wall == false)
+			mlx->camera.x -= mlx->camera.dir.x * ms;
 		if (mlx->map.blocks[(int)mlx->camera.x][(int)(mlx->camera.y -
-				mlx->camera.dir.y * move_speed)].is_wall == false)
-			mlx->camera.y -= mlx->camera.dir.y * move_speed;
+				mlx->camera.dir.y * ms)].is_wall == false)
+			mlx->camera.y -= mlx->camera.dir.y * ms;
 	}
-	rotate(key, mlx, rot_speed);
+	rotate(key, mlx, rs);
 }
 
 int		keypress_hook(int key, t_mlx *mlx)
 {
-	double	frame_rate;
-	double	move_speed;
-	double	rot_speed;
+	double	frametime;
+	double	rotspeed;
+	double	movespeed;
 
 	if (key == ESC)
 		exit(EXIT_SUCCESS);
-	frame_rate = (mlx->curframe - mlx->prevframe) / 1000.0;
-	move_speed = frame_rate * 4.0;
-	rot_speed = frame_rate * 2.0;
-	move(key, mlx, move_speed, rot_speed);
+	frametime = CLOCK_TO_SEC(mlx->deltaframe);
+	movespeed = frametime * 5.0;
+	rotspeed = frametime * 1.0;
+	move(key, mlx, movespeed, rotspeed);
 	render(mlx);
 	return (0);
 }
