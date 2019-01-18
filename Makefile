@@ -6,7 +6,7 @@
 #    By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 15:10:49 by otahirov          #+#    #+#              #
-#    Updated: 2019/01/15 16:48:47 by otahirov         ###   ########.fr        #
+#    Updated: 2019/01/18 13:31:36 by otahirov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ OBJDIR		= ./obj
 SRC			= keyboard.c \
 			  main.c \
 			  reader.c \
-			  render.c
+			  render.c \
+			  mouse.c
 
 OBJ			= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 

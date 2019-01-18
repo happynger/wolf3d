@@ -17,34 +17,34 @@
 
 void	rotate(int key, t_mlx *mlx, double rs)
 {
-	t_dcoor	dir;
-	t_dcoor	plane;
+	double	dirX;
+	double	planeX;
 
 	if (key == D)
 	{
-		dir.x = mlx->camera.dir.x;
+		dirX = mlx->camera.dir.x;
 		mlx->camera.dir.x = mlx->camera.dir.x * cos(-rs) -
 			mlx->camera.dir.y * sin(-rs);
-		mlx->camera.dir.y = dir.x * cos(-rs) +
-			mlx->camera.dir.y * sin(-rs);
-		plane.x = mlx->camera.plane.x;
+		mlx->camera.dir.y = dirX * sin(-rs) +
+			mlx->camera.dir.y * cos(-rs);
+		planeX = mlx->camera.plane.x;
 		mlx->camera.plane.x = mlx->camera.plane.x * cos(-rs) -
 			mlx->camera.plane.y * sin(-rs);
-		mlx->camera.plane.y = plane.x * cos(-rs) +
-			mlx->camera.plane.y * sin(-rs);
+		mlx->camera.plane.y = planeX * sin(-rs) +
+			mlx->camera.plane.y * cos(-rs);
 	}
 	if (key == A)
 	{
-		dir.x = mlx->camera.dir.x;
+		dirX = mlx->camera.dir.x;
 		mlx->camera.dir.x = mlx->camera.dir.x * cos(rs) -
 			mlx->camera.dir.y * sin(rs);
-		mlx->camera.dir.y = dir.x * cos(rs) +
-			mlx->camera.dir.y * sin(rs);
-		plane.x = mlx->camera.plane.x;
+		mlx->camera.dir.y = dirX * sin(rs) +
+			mlx->camera.dir.y * cos(rs);
+		planeX = mlx->camera.plane.x;
 		mlx->camera.plane.x = mlx->camera.plane.x * cos(rs) -
 			mlx->camera.plane.y * sin(rs);
-		mlx->camera.plane.y = plane.x * cos(rs) +
-			mlx->camera.plane.y * sin(rs);
+		mlx->camera.plane.y = planeX * sin(rs) +
+			mlx->camera.plane.y * cos(rs);
 	}
 }
 

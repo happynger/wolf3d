@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:04:54 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/16 14:07:57 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/18 13:10:36 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ static void	draw(t_mlx *mlx, int x)
 	while (y < HEIGHT)
 	{
 		if (y < blank || y > blank + mlx->linelength)
-			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xE5E3D0);
+			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0x65BEE5);
 		else
-			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xFFFFFF);
+			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0x210E40);
 		y++;
 	}
 }

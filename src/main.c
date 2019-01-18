@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/16 13:38:12 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/18 13:30:49 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int		main(int ac, char **av)
 	mlx = init(name);
 	mlx_expose_hook(mlx->win, hook_expose, mlx);
 	mlx_key_hook(mlx->win, keypress_hook, mlx);
+	mlx_hook(mlx->win, 6, 0, hook_mouse_move, mlx);
 	mlx_loop(mlx->mlx);
 }

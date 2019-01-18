@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/16 13:41:47 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/18 13:42:37 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,8 @@ typedef union		u_color
 
 typedef struct		s_mouse
 {
-	char			is_down;
 	int				x;
-	int				y;
 	int				x_last;
-	int				y_last;
 }					t_mouse;
 
 typedef struct		s_dcoor
@@ -114,5 +111,6 @@ typedef struct		s_mlx
 void				read_map(t_mlx *mlx);
 void				render(t_mlx *mlx);
 int					keypress_hook(int key, t_mlx *mlx);
+int					hook_mouse_move(int x, int y, t_mlx *mlx);
 
 #endif
