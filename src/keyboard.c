@@ -20,7 +20,7 @@ void	rotate(int key, t_mlx *mlx, double rs)
 	double	dirX;
 	double	planeX;
 
-	if (key == D)
+	if (key == K_D)
 	{
 		dirX = mlx->camera.dir.x;
 		mlx->camera.dir.x = mlx->camera.dir.x * cos(-rs) -
@@ -33,7 +33,7 @@ void	rotate(int key, t_mlx *mlx, double rs)
 		mlx->camera.plane.y = planeX * sin(-rs) +
 			mlx->camera.plane.y * cos(-rs);
 	}
-	if (key == A)
+	if (key == K_A)
 	{
 		dirX = mlx->camera.dir.x;
 		mlx->camera.dir.x = mlx->camera.dir.x * cos(rs) -
@@ -50,7 +50,7 @@ void	rotate(int key, t_mlx *mlx, double rs)
 
 void	move(int key, t_mlx *mlx, double ms, double rs)
 {
-	if (key == W)
+	if (key == K_W)
 	{
 		if (mlx->map.blocks[(int)(mlx->camera.x + mlx->camera.dir.x *
 				ms)][(int)mlx->camera.y].is_wall == false)
@@ -59,7 +59,7 @@ void	move(int key, t_mlx *mlx, double ms, double rs)
 				mlx->camera.dir.y * ms)].is_wall == false)
 			mlx->camera.y += mlx->camera.dir.y * ms;
 	}
-	if (key == S)
+	if (key == K_S)
 	{
 		if (mlx->map.blocks[(int)(mlx->camera.x - mlx->camera.dir.x *
 				ms)][(int)mlx->camera.y].is_wall == false)
@@ -77,7 +77,7 @@ int		keypress_hook(int key, t_mlx *mlx)
 	double	rotspeed;
 	double	movespeed;
 
-	if (key == ESC)
+	if (key == K_ESC)
 		exit(EXIT_SUCCESS);
 	frametime = CLOCK_TO_SEC(mlx->deltaframe);
 	movespeed = frametime * 5.0;

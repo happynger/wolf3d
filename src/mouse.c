@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:20:18 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/18 14:05:53 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:53:28 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int			hook_mouse_move(int x, int y, t_mlx *mlx)
 		mlx->mouse.x = WIDTH;
 	else
 		mlx->mouse.x = x;
-	angel = atan(((mlx->mouse.x_last - mlx->mouse.x) / 2) / MOUSE_TO_PLANE) * 2;
+	angel = atan2(mlx->mouse.x_last, mlx->mouse.x);
+	angel = (mlx->mouse.x_last - mlx->mouse.x < 0
+			&& angel > 0) ? -(angel / 10) : (angel / 10);
 	mouse_rotate(mlx, angel);
+	render(mlx);
 	return (0);
 }

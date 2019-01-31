@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/18 13:30:49 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:54:38 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		main(int ac, char **av)
 	else
 		name = ft_strdup("map.wolf");
 	mlx = init(name);
+	mlx_do_key_autorepeaton(mlx->mlx);
 	mlx_expose_hook(mlx->win, hook_expose, mlx);
 	mlx_key_hook(mlx->win, keypress_hook, mlx);
 	mlx_hook(mlx->win, 6, 0, hook_mouse_move, mlx);
