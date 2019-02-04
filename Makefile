@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+         #
+#    By: ori <ori@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 15:10:49 by otahirov          #+#    #+#              #
-#    Updated: 2019/01/18 13:31:36 by otahirov         ###   ########.fr        #
+#    Updated: 2019/02/04 01:05:47 by ori              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= wolf3d
+OS			= $(shell uname)
 
 SRCDIR		= ./src
 INCDIR		= ./includes
@@ -20,17 +21,25 @@ SRC			= keyboard.c \
 			  main.c \
 			  reader.c \
 			  render.c \
-			  mouse.c
+			  mouse.c \
+			  player.c
 
 OBJ			= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 CC			= gcc
-CFLAG		= -Wall -Wextra -Werror -O3
 
-MLX			= ./minilibx
-MLX_LINK	= -L $(MLX) -lmlx -framework OpenGL -framework AppKit
+ifeq ($(OS), Linux)
+	CFLAG		= -O3
+	MLX			= ./minilibx_X11/
+	MLX_LINK	= -L $(MLX) -lmlx -lXext -lX11
+else
+	CFLAG		= -Wall -Wextra -Werror -O3
+	MLX			= ./minilibx/
+	MLX_LINK	= -L $(MLX) -lmlx -framework OpenGL -framework AppKit
+endif
+
 MLX_INC		= -I $(MLX)
-MLX_LIB		= $(addprefix $(MLX),mlx.a)
+MLX_LIB		= $(addprefix $(MLX),libmlx.a)
 
 FTDIR		= ./libft
 FT			= $(addprefix $(FTDIR),/)

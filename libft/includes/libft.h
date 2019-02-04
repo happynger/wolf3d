@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:02:50 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 16:29:33 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/02/03 23:22:43 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <libc.h>
+# include <stdint.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
 # include <stdbool.h>

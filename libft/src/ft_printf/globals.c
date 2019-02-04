@@ -6,11 +6,12 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:32:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/12 16:08:56 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:07:01 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "printf_globals.h"
 
 /*
 ** flag # 0 : '-'

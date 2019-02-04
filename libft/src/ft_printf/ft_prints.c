@@ -6,11 +6,12 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/06 15:56:04 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:06:31 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "printf_globals.h"
 
 #define FT_ITOA(is_upper) (ft_itoa(input, base, is_upper))
 #define FT_UITOA(is_upper) (ft_uitoa(uinput, base, is_upper))

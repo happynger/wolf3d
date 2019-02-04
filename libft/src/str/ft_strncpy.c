@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:54:05 by otahirov          #+#    #+#             */
-/*   Updated: 2018/09/19 11:54:55 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/02/03 23:09:44 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	size_t	size;
-	size_t	i;
 
-	i = 0;
 	size = ft_strnlen(src, len);
 	if (size != len)
 		ft_memset(dst + size, '\0', len - size);

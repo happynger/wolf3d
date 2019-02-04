@@ -6,11 +6,12 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/06 13:30:44 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:06:20 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "printf_globals.h"
 
 static void	ft_flags(const char **form)
 {

@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/10 12:30:55 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:05:05 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,5 @@ char						*print_m(va_list ap, char fg);
 
 # define G_LENMOD 7
 # define G_FLAGS 7
-
-extern bool				g_flags[];
-extern bool				g_lenmod[];
-extern int				g_prec;
-extern int				g_field;
-extern int				g_bytes;
-extern char				g_conv;
-extern t_printf_table	g_table[];
 
 #endif

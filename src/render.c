@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:04:54 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/18 13:10:36 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/02/04 03:07:33 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <math.h>
-#include <time.h>
 
 static void	dda(t_mlx *mlx, t_ray *ray)
 {
@@ -75,8 +74,10 @@ static void	draw(t_mlx *mlx, int x)
 	blank = (HEIGHT - mlx->linelength) / 2;
 	while (y < HEIGHT)
 	{
-		if (y < blank || y > blank + mlx->linelength)
+		if (y < blank)
 			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0x65BEE5);
+		else if (y > blank + mlx->linelength)
+			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0x656EE5);
 		else
 			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0x210E40);
 		y++;
@@ -94,15 +95,14 @@ static void	init(t_mlx *mlx, t_ray *ray, int x)
 	dda(mlx, ray);
 }
 
+
 void		render(t_mlx *mlx)
 {
 	int			x;
 	t_ray		ray;
 	double		wall_dist;
-	clock_t		timer;
 
 	x = -1;
-	timer = clock();
 	while (++x < WIDTH)
 	{
 		init(mlx, &ray, x);
@@ -115,6 +115,5 @@ void		render(t_mlx *mlx)
 		mlx->linelength = (ray.hit) ? HEIGHT / wall_dist : HEIGHT;
 		draw(mlx, x);
 	}
-	mlx->deltaframe = clock() - timer;
 	mlx->frames++;
 }

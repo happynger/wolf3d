@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:20:52 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/15 15:59:10 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/02/04 02:21:42 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			get_instr(t_map *map, char *line)
 
 	tmp = line;
 	if (*tmp != '(')
-		return (1);
+		return (-1);
 	while (!ft_isdigit(*tmp))
 		tmp++;
 	map->playerX = ft_atoi(tmp) - 1;
@@ -40,15 +40,16 @@ void		get_size(t_map *map, char *line)
 	if (instr == 0)
 	{
 		instr = get_instr(map, line);
-		return ;
+		if (instr == -1)
+			map->instr = instr;
+		else
+			return ;
 	}
-	ln = 0;
+	ln = -1;
 	tab = ft_strsplit(line, ' ');
-	while (tab[ln])
-	{
+	while (tab[++ln])
 		ft_strdel(&tab[ln]);
-		ln++;
-	}
+	map->row[map->lines] = ln;
 	if (map->maxrow < ln)
 		map->maxrow = ln;
 	ft_strdel(&line);
@@ -67,7 +68,7 @@ void		init_map(t_map *map, t_mlx *mlx)
 	map->playerY = -1;
 	while (get_next_line(mlx->fd, &line) > 0)
 		get_size(map, line);
-	map->blocks = ft_memalloc(map->lines * sizeof(t_block));
+	map->blocks = (t_block **)ft_memalloc(map->lines * sizeof(t_block));
 	close(mlx->fd);
 	mlx->fd = open(mlx->name, O_RDONLY);
 }
@@ -86,7 +87,7 @@ void		read_map(t_mlx *mlx)
 	{
 		x[0] = 0;
 		tab = ft_strsplit(line, ' ');
-		map->blocks[x[1]] = ft_memalloc(sizeof(t_block) * map->maxrow);
+		map->blocks[x[1]] = (t_block *)ft_memalloc(sizeof(t_block) * map->maxrow);
 		while (tab[x[0]])
 		{
 			x[2] = ft_atoi(tab[x[0]]);

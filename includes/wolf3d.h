@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/25 09:56:37 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/02/04 01:08:41 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIDTH 1280
 # define HEIGHT 1080
+
+# define MAX_MAP_SIZE 256
 
 # include "../libft/includes/libft.h"
 # include <stdbool.h>
@@ -75,6 +77,8 @@ typedef struct		s_map
 	t_block			**blocks;
 	int				playerX;
 	int				playerY;
+	int				row[MAX_MAP_SIZE];
+	int				instr;
 }					t_map;
 
 /*
@@ -110,6 +114,8 @@ typedef struct		s_mlx
 
 void				read_map(t_mlx *mlx);
 void				render(t_mlx *mlx);
+void				place_player(t_map *map, t_mlx *mlx);
+void				rotate_player(t_mlx *mlx, double radians);
 int					keypress_hook(int key, t_mlx *mlx);
 int					hook_mouse_move(int x, int y, t_mlx *mlx);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 12:14:14 by otahirov          #+#    #+#             */
-/*   Updated: 2018/09/16 22:30:05 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/02/03 23:09:23 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_strequ(char const *s1, char const *s2)
 {
 	if (!s1 || !s2)
-		return ((int)NULL);
+		return (-1);
 	while (*s1 && *s2)
 	{
 		if (*s1 != *s2)

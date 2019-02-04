@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:47:33 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/12 16:28:19 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:06:12 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <limits.h>
 #define ITOA(in) ft_itoa(in, 10, false)
 #define UITOA(in) ft_uitoamax((uintmax_t)in, 10, false, true)
+#include "printf_globals.h"
 
 static long double	pullfloat(va_list ap)
 {

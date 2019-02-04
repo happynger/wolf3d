@@ -6,11 +6,12 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 15:25:46 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/23 16:56:05 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:05:29 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "printf_globals.h"
 
 static void		print(char *clr)
 {

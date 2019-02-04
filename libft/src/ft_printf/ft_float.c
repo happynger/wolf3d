@@ -6,12 +6,13 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:16:31 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/06 13:33:00 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/01/31 15:37:06 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <math.h>
+#include "printf_globals.h"
 
 void	ft_round(char **ret, int index)
 {

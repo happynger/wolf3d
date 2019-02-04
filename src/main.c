@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/01/31 13:54:38 by otahirov         ###   ########.fr       */
+/*   Updated: 2019/02/04 01:14:59 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 
 void			destroy(t_mlx *mlx, int line)
 {
-	char	*tmp;
-
-	tmp = mlx->name;
 	if (mlx->win != NULL)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (mlx->fd > 2)
@@ -68,8 +65,10 @@ int		main(int ac, char **av)
 	t_mlx	*mlx;
 	char	*name;
 
-	if (ac > 3)
+	if (ac >= 3)
 	{
+		ft_printf("{cyan}The wolf3d without parameters looks for ");
+		ft_printf("'map.wolf' in the same directory as the executable{}\n");
 		ft_error("Usage -> ./wolf3d | -> ./wolf3d [Path to the map file]");
 		return (1);
 	}
@@ -78,6 +77,8 @@ int		main(int ac, char **av)
 	else
 		name = ft_strdup("map.wolf");
 	mlx = init(name);
+	if (mlx->map.instr == -1)
+		place_player(&mlx->map, mlx);
 	mlx_do_key_autorepeaton(mlx->mlx);
 	mlx_expose_hook(mlx->win, hook_expose, mlx);
 	mlx_key_hook(mlx->win, keypress_hook, mlx);
