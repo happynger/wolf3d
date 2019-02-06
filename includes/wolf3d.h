@@ -6,7 +6,7 @@
 /*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/02/04 01:08:41 by ori              ###   ########.fr       */
+/*   Updated: 2019/02/05 16:19:25 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,28 @@ typedef struct		s_ray
 	bool			side_hit;
 }					t_ray;
 
+/*
+**	res == (Width, Height)
+*/
+
+typedef struct		s_txr
+{
+	int				*res;
+	t_color			**pix;
+	char			*name;
+}					t_txr;
+
 typedef struct		s_mlx
 {
 	void			*mlx;
 	void			*win;
 	char			*name;
 	int				fd;
-	clock_t			deltaframe;
 	unsigned int	frames;
 	int				linelength;
 	t_mouse			mouse;
 	t_camera		camera;
+	t_txr			**textures;
 	t_map			map;
 }					t_mlx;
 
@@ -118,5 +129,6 @@ void				place_player(t_map *map, t_mlx *mlx);
 void				rotate_player(t_mlx *mlx, double radians);
 int					keypress_hook(int key, t_mlx *mlx);
 int					hook_mouse_move(int x, int y, t_mlx *mlx);
+t_txr				*read_texture(int fd);
 
 #endif

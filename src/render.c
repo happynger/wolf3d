@@ -6,7 +6,7 @@
 /*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:04:54 by otahirov          #+#    #+#             */
-/*   Updated: 2019/02/04 03:07:33 by ori              ###   ########.fr       */
+/*   Updated: 2019/02/05 14:49:01 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static void	init(t_mlx *mlx, t_ray *ray, int x)
 	init_ray(ray, mlx);
 	dda(mlx, ray);
 }
-
 
 void		render(t_mlx *mlx)
 {

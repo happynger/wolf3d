@@ -14,12 +14,25 @@
 #include "keyvalues.h"
 #include <math.h>
 
+#define ROT_SMOOTH 5
+
 void	rotate(int key, t_mlx *mlx, double rs)
 {
+	int	i;
+
+	i = -1;
 	if (key == K_D)
-		rotate_player(mlx, -rs);
+		while (++i < ROT_SMOOTH)
+		{
+			rotate_player(mlx, -(rs / ROT_SMOOTH));
+			render(mlx);
+		}
 	if (key == K_A)
-		rotate_player(mlx, rs);
+		while (++i < ROT_SMOOTH)
+		{
+			rotate_player(mlx, rs / ROT_SMOOTH);
+			render(mlx);
+		}
 }
 
 void	move(int key, t_mlx *mlx, double ms, double rs)
@@ -52,7 +65,7 @@ int		keypress_hook(int key, t_mlx *mlx)
 
 	if (key == K_ESC)
 		exit(EXIT_SUCCESS);
-	rotspeed = 0.1;
+	rotspeed = 0.17;
 	movespeed = 0.3;
 	move(key, mlx, movespeed, rotspeed);
 	render(mlx);

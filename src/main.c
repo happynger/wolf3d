@@ -6,7 +6,7 @@
 /*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/02/04 01:14:59 by ori              ###   ########.fr       */
+/*   Updated: 2019/02/05 14:48:49 by ori              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static t_mlx	*init(char *name)
 	mlx->camera.x = mlx->map.playerX;
 	mlx->camera.y = mlx->map.playerY;
 	mlx->camera.range = 100;
-	mlx->deltaframe = 0;
 	mlx->frames = 0;
 	return (mlx);
 }
