@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ori <ori@student.42.fr>                    +#+  +:+       +#+         #
+#    By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 15:10:49 by otahirov          #+#    #+#              #
-#    Updated: 2019/02/04 01:05:47 by ori              ###   ########.fr        #
+#    Updated: 2019/02/13 10:20:56 by otahirov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRC			= keyboard.c \
 			  reader.c \
 			  render.c \
 			  mouse.c \
-			  player.c
+			  player.c \
+			  texture.c \
+			  read_textures.c
 
 OBJ			= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
@@ -66,12 +68,12 @@ $(NAME): $(OBJ)
 
 clean:
 	@rm -rf $(OBJDIR)
-	@make -C $(FT) clean
+	#@make -C $(FT) clean
 	@make -C $(MLX) clean
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make -C $(FT) fclean
+	#@make -C $(FT) fclean
 
 re: fclean all
 

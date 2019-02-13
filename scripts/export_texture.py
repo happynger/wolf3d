@@ -13,7 +13,7 @@ def hexer(rgb=(0, 0, 0)):
 
 im = Image.open(name + '.png')
 
-data = im.getdata()
+data = list(im.getdata())
 
 f = open(name + '.tori', 'w+')
 
@@ -33,9 +33,15 @@ f.write(')\n')
 k = 0
 
 for pix in data:
-	f.write(str(pix))
+	strpix = str(pix)
+	strpix = strpix.replace(' ', '')
+	f.write(strpix)
 	f.write(' ')
 	if i == resolution[0]:
 		f.write('\n')
 		i = 0
 	i += 1
+
+f.write('\n')
+
+f.close()

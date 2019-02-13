@@ -14,7 +14,7 @@
 #include "keyvalues.h"
 #include <math.h>
 
-#define ROT_SMOOTH 5
+#define ROT_SMOOTH 1
 
 void	rotate(int key, t_mlx *mlx, double rs)
 {
@@ -25,13 +25,15 @@ void	rotate(int key, t_mlx *mlx, double rs)
 		while (++i < ROT_SMOOTH)
 		{
 			rotate_player(mlx, -(rs / ROT_SMOOTH));
-			render(mlx);
+			if (ROT_SMOOTH != 1)
+				render(mlx);
 		}
 	if (key == K_A)
 		while (++i < ROT_SMOOTH)
 		{
 			rotate_player(mlx, rs / ROT_SMOOTH);
-			render(mlx);
+			if (ROT_SMOOTH != 1)
+				render(mlx);
 		}
 }
 

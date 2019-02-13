@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:04:54 by otahirov          #+#    #+#             */
-/*   Updated: 2019/02/05 14:49:01 by ori              ###   ########.fr       */
+/*   Updated: 2019/02/12 15:53:21 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	draw(t_mlx *mlx, int x)
 		else if (y > blank + mlx->linelength)
 			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0x656EE5);
 		else
-			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0x210E40);
+			mlx_pixel_put(mlx->mlx, mlx->win, x, y, get_color(x, y, mlx));
 		y++;
 	}
 }

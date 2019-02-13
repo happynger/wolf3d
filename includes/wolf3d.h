@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 13:38:17 by otahirov          #+#    #+#             */
-/*   Updated: 2019/02/05 16:19:25 by ori              ###   ########.fr       */
+/*   Updated: 2019/02/12 16:09:05 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ typedef struct		s_ray
 
 /*
 **	res == (Width, Height)
+**	name is allocated remember to delete!
+**	pix -> pix[y][x]
 */
 
 typedef struct		s_txr
@@ -107,6 +109,7 @@ typedef struct		s_txr
 	int				*res;
 	t_color			**pix;
 	char			*name;
+	int				id;
 }					t_txr;
 
 typedef struct		s_mlx
@@ -129,6 +132,8 @@ void				place_player(t_map *map, t_mlx *mlx);
 void				rotate_player(t_mlx *mlx, double radians);
 int					keypress_hook(int key, t_mlx *mlx);
 int					hook_mouse_move(int x, int y, t_mlx *mlx);
-t_txr				*read_texture(int fd);
+t_txr				*read_texture(int fd, char *name);
+int					get_color(int x, int y, t_mlx *mlx);
+void				get_texture_files(t_mlx *mlx);
 
 #endif

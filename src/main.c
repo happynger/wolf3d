@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ori <ori@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:23:13 by otahirov          #+#    #+#             */
-/*   Updated: 2019/02/05 14:48:49 by ori              ###   ########.fr       */
+/*   Updated: 2019/02/12 16:19:09 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void			destroy(t_mlx *mlx, int line)
 		close(mlx->fd);
 	if (mlx->mlx != NULL)
 		ft_memdel((void **)&mlx->mlx);
+	if (mlx->textures != NULL)
+		ft_memdel((void **)mlx->textures);
 	ft_error(ft_strjoin(MSG, ft_itoa(line, 10, false)));
 }
 
@@ -76,11 +78,14 @@ int		main(int ac, char **av)
 	else
 		name = ft_strdup("map.wolf");
 	mlx = init(name);
+	get_texture_files(mlx);
+	if (mlx->textures == NULL)
+		destroy(mlx, __LINE__);
 	if (mlx->map.instr == -1)
 		place_player(&mlx->map, mlx);
 	mlx_do_key_autorepeaton(mlx->mlx);
 	mlx_expose_hook(mlx->win, hook_expose, mlx);
 	mlx_key_hook(mlx->win, keypress_hook, mlx);
-	mlx_hook(mlx->win, 6, 0, hook_mouse_move, mlx);
+	//mlx_hook(mlx->win, 6, 0, hook_mouse_move, mlx);
 	mlx_loop(mlx->mlx);
 }
